@@ -1,6 +1,13 @@
-import logo from "./logo.svg";
-
+import { loadGames } from "actions/gamesActions";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+// import logo from "./logo.svg";
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadGames());
+  });
   return (
     <div className="App">
       <h1>Hello Ignite</h1>
