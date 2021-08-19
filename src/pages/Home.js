@@ -1,41 +1,64 @@
-import { useEffect } from "react";
-//Redus
-import { loadGames } from "actions/gamesActions";
+import React, { useEffect } from "react";
+//Redux
 import { useDispatch, useSelector } from "react-redux";
+//Components
+import { Game } from "components";
+
+//Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Game from "components/Game";
+import { loadGames } from "actions/gamesActions";
 
 const Home = () => {
+  //FETCH GAMES
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadGames());
-    // console.log("i fire once");
   }, [dispatch]);
-  /**
-   * Get data back from from store
-   * We do have  access to everything from
-   * Will return a object with newGames,popular and upcoming.
-   * We can extract them by destructuring the response
-   */
-  const {
-    // newGames, popular,
-    upcoming,
-  } = useSelector((state) => state.games);
+
+  //Get that data back
+  const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
   return (
-    // Basicaly , it's a container / main
+    // TODO:GameList should be another component
     <GameList>
       <h2>Upcoming Games</h2>
+      {/* TODO: Games should be in GameListcomp */}
       <Games>
-        {upcoming.map(({ id, released, name, background_image }) => (
+        {upcoming.map((game) => (
           <Game
-            key={id}
-            id={id}
-            name={name}
-            released={released}
-            image={background_image}
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
+      <h2>Popular Games</h2>
+      {/* TODO: Games should be in GameListcomp */}
+      <Games>
+        {popular.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
+      <h2>New Games</h2>
+      {/* TODO: Games should be in GameListcomp */}
+      <Games>
+        {newGames.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
           />
         ))}
       </Games>
@@ -44,24 +67,18 @@ const Home = () => {
 };
 
 const GameList = styled(motion.div)`
-  padding: 0rem clamp(0.1rem, 1vw, 5rem);
+  padding: 0rem 5rem;
   h2 {
     padding: 5rem 0rem;
   }
 `;
+
 const Games = styled(motion.div)`
   min-height: 80vh;
   display: grid;
-  /*
-   *  Reapeat as many time a necessary a column for each item
-   *  Each column is 200px minimum and as much space and you
-   */
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
-
-  /* @media only screen and (min-width: 500px) {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  } */
 `;
+
 export default Home;

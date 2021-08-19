@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 // import styled from "styled-components";
-const Game = ({ id, released, name, image }) => {
-  console.log({ id, released, name, image });
+const Game = ({ released, name, image }) => {
+  console.log({ released, name, image });
   return (
     <StyledGame>
       <h3>{name}</h3>
