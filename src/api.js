@@ -1,5 +1,6 @@
 // Key things
 const key = "7df80adea0014ebabf6d0b7ce6e9fbe9"; // YOUR KEY GOES HERE
+// RAWG_API_KEY
 const key_url = `key=${key}`;
 
 //Base URL

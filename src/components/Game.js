@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 // import styled from "styled-components";
 const Game = ({ released, name, image }) => {
-  console.log({ released, name, image });
+  // console.log({ released, name, image });
   return (
     <StyledGame>
       <h3>{name}</h3>
