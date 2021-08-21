@@ -1,16 +1,20 @@
 /**
  * Game.js represent each game card
  */
-// import { motion } from "framer-motion";
 
+import { loadDetail } from "actions/detailAction";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-// import styled from "styled-components";
-const Game = ({ released, name, image }) => {
-  // console.log({ released, name, image });
+const Game = ({ released, name, image, id }) => {
+  // Load Details
+  const dispatch = useDispatch();
+  const loadDetailsHandler = () => {
+    dispatch(loadDetail(id));
+  };
   return (
-    <StyledGame>
+    <StyledGame onClick={loadDetailsHandler}>
       <h3>{name}</h3>
       <p>{released}</p>
       <img src={image} alt={image} />

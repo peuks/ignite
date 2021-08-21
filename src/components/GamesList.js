@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Game from "./Game";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
+import Game from "components/Game";
 
 const GamesList = ({ popular, newGames, upcoming }) => {
   const allGames = [
@@ -13,7 +13,7 @@ const GamesList = ({ popular, newGames, upcoming }) => {
   return (
     <GameListStyled key={uuidv4()}>
       {allGames.map((section) => (
-        <div className="section">
+        <div className="section" key={uuidv4()}>
           <h2>{section.title}</h2>
           <GamesSectionStyled>
             {section.games.map((game) => (
@@ -21,7 +21,8 @@ const GamesList = ({ popular, newGames, upcoming }) => {
                 name={game.name}
                 released={game.released}
                 image={game.background_image}
-                key={uuidv4()}
+                id={game.id}
+                key={game.id}
               />
             ))}
           </GamesSectionStyled>
