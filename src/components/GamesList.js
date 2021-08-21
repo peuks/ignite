@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import Game from "components/Game";
+import GameDetail from "./GameDetail";
 
 const GamesList = ({ popular, newGames, upcoming }) => {
   const allGames = [
@@ -11,9 +12,10 @@ const GamesList = ({ popular, newGames, upcoming }) => {
     { title: "New Games", games: upcoming },
   ];
   return (
-    <GameListStyled key={uuidv4()}>
+    <GameListStyled>
+      {/* <GameDetail/> */}
       {allGames.map((section) => (
-        <div className="section" key={uuidv4()}>
+        <React.Fragment key={uuidv4()}>
           <h2>{section.title}</h2>
           <GamesSectionStyled>
             {section.games.map((game) => (
@@ -26,7 +28,7 @@ const GamesList = ({ popular, newGames, upcoming }) => {
               />
             ))}
           </GamesSectionStyled>
-        </div>
+        </React.Fragment>
       ))}
     </GameListStyled>
   );
