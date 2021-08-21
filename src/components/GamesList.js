@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import Game from "components/Game";
-import GameDetail from "./GameDetail";
 
 const GamesList = ({ popular, newGames, upcoming }) => {
   const allGames = [

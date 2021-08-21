@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     html{
+        /* Custom scroll bar */
         &::-webkit-scrollbar{
             width: 0.5rem;
         }

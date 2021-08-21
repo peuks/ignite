@@ -8,6 +8,7 @@ import { Game } from "components";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { loadGames } from "actions/gamesActions";
+import GameDetail from "components/GameDetail";
 
 const Home = () => {
   //FETCH GAMES
@@ -23,43 +24,27 @@ const Home = () => {
   return (
     // TODO:GameList should be another component
     <GameList>
+      <GameDetail />
+      {/* <GameDetail /> */}
       <h2>Upcoming Games</h2>
       {/* TODO: Games should be in GameListcomp */}
       <Games>
         {upcoming.map((game) => (
-          <Game
-            name={game.name}
-            released={game.released}
-            id={game.id}
-            image={game.background_image}
-            key={game.id}
-          />
+          <Game game={game} key={game.id} />
         ))}
       </Games>
       <h2>Popular Games</h2>
       {/* TODO: Games should be in GameListcomp */}
       <Games>
         {popular.map((game) => (
-          <Game
-            name={game.name}
-            released={game.released}
-            id={game.id}
-            image={game.background_image}
-            key={game.id}
-          />
+          <Game game={game} key={game.id} />
         ))}
       </Games>
       <h2>New Games</h2>
       {/* TODO: Games should be in GameListcomp */}
       <Games>
         {newGames.map((game) => (
-          <Game
-            name={game.name}
-            released={game.released}
-            id={game.id}
-            image={game.background_image}
-            key={game.id}
-          />
+          <Game game={game} key={game.id} />
         ))}
       </Games>
     </GameList>
