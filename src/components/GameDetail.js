@@ -12,7 +12,7 @@ const GameDetail = () => {
     name,
     platforms,
     rating,
-    background_image,
+    background_image: backgroundImage,
     description_raw,
     short_screenshots,
   } = game;
@@ -20,31 +20,31 @@ const GameDetail = () => {
   return (
     <CardShadow className="card card--shadow">
       <Detail className="card__detail">
-        <div className="card__stats">
+        <Stats className="card__stats">
           <div className="card__rating">
             <h3>{name}</h3>
             <p>Rating: {rating}</p>
           </div>
-          <div className="info">
+          <Info className="info">
             <h3>Platforms</h3>
-            <div className="platforms">
+            <Platforms className="platforms">
               {platforms?.map((data) => (
                 <h3 key={data.platform.id}>{data.platform.name}</h3>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="media">
-          <img src={background_image} alt={background_image} />
-        </div>
-        <div className="description">
+            </Platforms>
+          </Info>
+        </Stats>
+        <Media className="media">
+          <img src={backgroundImage} alt={backgroundImage} />
+        </Media>
+        <Description className="description">
           <p>{description_raw}</p>
-        </div>
-        <div className="gallery">
+        </Description>
+        <Gallery className="gallery">
           {short_screenshots?.map((screen) => (
             <img src={screen.image} key={screen.id} alt={screen.image} />
           ))}
-        </div>
+        </Gallery>
       </Detail>
     </CardShadow>
   );
@@ -83,6 +83,48 @@ const Detail = styled(motion.div)`
   z-index: 10;
   img {
     width: 100%;
+  }
+`;
+
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
+`;
+
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  h3 {
+    margin-left: 3rem;
+  }
+`;
+const Info = styled(motion.div)`
+  text-align: center;
+`;
+
+const Media = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const Description = styled(motion.div)`
+  margin: 5rem 0rem;
+`;
+
+const Gallery = styled(motion.div)`
+  img {
+    padding: 1em 0;
   }
 `;
 export default GameDetail;
