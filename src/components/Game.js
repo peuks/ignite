@@ -5,6 +5,7 @@
 import { loadDetail } from "actions/detailAction";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Game = ({ game }) => {
@@ -25,11 +26,14 @@ const Game = ({ game }) => {
     dispatch(loadDetail(id, short_screenshots));
   };
   return (
-    <StyledGame onClick={loadDetailsHandler}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={image} alt={image} />
-    </StyledGame>
+    // Will change the URL and because we have a condition on routing. It will show GameDetail Component
+    <Link to={`/game/${id}`}>
+      <StyledGame onClick={loadDetailsHandler}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={image} alt={image} />
+      </StyledGame>
+    </Link>
   );
 };
 const StyledGame = styled(motion.div)`

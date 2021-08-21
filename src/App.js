@@ -1,12 +1,20 @@
 import { GlobalStyles } from "components";
 import Home from "pages/Home";
+import { Route } from "react-router-dom";
 
 // import logo from "./logo.svg";
 const App = () => {
   return (
     <div className="App">
       <GlobalStyles />
-      <Home />
+      {/* 
+      When our Route says "/" we render Home component.
+      When our Route says "/game/:id" we also render Home component.
+
+      */}
+      <Route path={["/game/:id", "/"]}>
+        <Home />
+      </Route>
     </div>
   );
 };
