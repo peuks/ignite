@@ -30,10 +30,6 @@ const Home = () => {
    * @return 58386
    */
 
-  useEffect((id) => {
-    if (!id) document.body.style.overflow = "auto";
-  }, []);
-
   return (
     // TODO:GameList should be another component
     <GameList>
