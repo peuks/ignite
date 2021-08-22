@@ -27,9 +27,13 @@ const Game = ({ game }) => {
     // Will change the URL and because we have a condition on routing. It will show GameDetail Component
     <StyledGame key={id} layoutId={id.toString()} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${id.toString()}`}>{name}</motion.h3>
         <p>{released}</p>
-        <img src={smallImage(image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${id.toString()}`}
+          src={smallImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );
