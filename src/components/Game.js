@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { smallImage } from "utils";
 
 const Game = ({ game }) => {
   const {
@@ -28,7 +29,7 @@ const Game = ({ game }) => {
       <StyledGame onClick={loadDetailsHandler}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={image} alt={image} />
+        <img src={smallImage(image, 640)} alt={image} />
       </StyledGame>
     </Link>
   );
