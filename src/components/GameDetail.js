@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const GameDetail = () => {
   //Data
-  const { game } = useSelector((state) => state.detail);
+  const { game, isLoading } = useSelector((state) => state.detail);
   const {
     name,
     platforms,
@@ -16,37 +17,53 @@ const GameDetail = () => {
     description_raw,
     short_screenshots,
   } = game;
+  const history = useHistory();
 
+  document.body.style.overflow = "hidden";
+
+  //Exit Detail
+  const exitDetailHander = (e) => {
+    const element = e.target;
+    if (element.classList.contains("card--shadow")) {
+      document.body.style.overflow = "scroll";
+      history.push("/");
+    }
+  };
   return (
-    <CardShadow className="card card--shadow">
-      <Detail className="card__detail">
-        <Stats className="card__stats">
-          <div className="card__rating">
-            <h3>{name}</h3>
-            <p>Rating: {rating}</p>
-          </div>
-          <Info className="info">
-            <h3>Platforms</h3>
-            <Platforms className="platforms">
-              {platforms?.map((data) => (
-                <h3 key={data.platform.id}>{data.platform.name}</h3>
+    <>
+      {/* wait until content is ready to render */}
+      {!isLoading && (
+        <CardShadow onClick={exitDetailHander} className="card card--shadow">
+          <Detail className="card__detail">
+            <Stats className="card__stats">
+              <div className="card__rating">
+                <h3>{name}</h3>
+                <p>Rating: {rating}</p>
+              </div>
+              <Info className="info">
+                <h3>Platforms</h3>
+                <Platforms className="platforms">
+                  {platforms?.map((data) => (
+                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media className="media">
+              <img src={backgroundImage} alt={backgroundImage} />
+            </Media>
+            <Description className="description">
+              <p>{description_raw}</p>
+            </Description>
+            <Gallery className="gallery">
+              {short_screenshots?.map((screen) => (
+                <img src={screen.image} key={screen.id} alt={screen.image} />
               ))}
-            </Platforms>
-          </Info>
-        </Stats>
-        <Media className="media">
-          <img src={backgroundImage} alt={backgroundImage} />
-        </Media>
-        <Description className="description">
-          <p>{description_raw}</p>
-        </Description>
-        <Gallery className="gallery">
-          {short_screenshots?.map((screen) => (
-            <img src={screen.image} key={screen.id} alt={screen.image} />
-          ))}
-        </Gallery>
-      </Detail>
-    </CardShadow>
+            </Gallery>
+          </Detail>
+        </CardShadow>
+      )}
+    </>
   );
 };
 const CardShadow = styled(motion.div)`

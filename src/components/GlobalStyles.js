@@ -7,20 +7,23 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     html{
+        
         /* Custom scroll bar */
         &::-webkit-scrollbar{
             width: 0.5rem;
+            
         }
         &::-webkit-scrollbar-thumb{
             background-color: darkgrey;
         }
         &::-webkit-scrollbar-track {
-    background: white;
-  }
+            background: white;
+        }
     }
     body{
         font-family: 'Montserrat', sans-serif;
         width: 100%;
+
     }
     h2{
         font-size: 3rem;
@@ -48,6 +51,16 @@ const GlobalStyles = createGlobalStyle`
     input{
         font-weight: bold;
     font-family: "Montserrat", sans-serif;
+    }
+    .transition--hide{
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+    }
+    .transition--show{
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
     }
 `;
 

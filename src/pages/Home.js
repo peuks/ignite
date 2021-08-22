@@ -9,11 +9,13 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { loadGames } from "actions/gamesActions";
 import GameDetail from "components/GameDetail";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Home = () => {
   //FETCH GAMES
   const dispatch = useDispatch();
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
 
   useEffect(() => {
     dispatch(loadGames());
@@ -22,16 +24,16 @@ const Home = () => {
   //Get that data back
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
-  const location = useLocation();
-
   /**
    * return the last element of the array with every content after a /
    * @eg /game/58386
    * @return 58386
    */
-  const id = location.pathname.split("/")[2];
-  console.log(id);
-  console.log(location.pathname);
+
+  useEffect((id) => {
+    if (!id) document.body.style.overflow = "auto";
+  }, []);
+
   return (
     // TODO:GameList should be another component
     <GameList>
