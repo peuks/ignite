@@ -85,7 +85,7 @@ const CardShadow = styled(motion.div)`
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 20;
   /* Custom scroll barr */
   &::-webkit-scrollbar {
     width: 0.5rem;
@@ -99,8 +99,9 @@ const CardShadow = styled(motion.div)`
 `;
 
 const Detail = styled(motion.div)`
+  top: 5vh;
   width: 80%;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   padding: 2rem 5rem;
   background: white;
   position: absolute;
