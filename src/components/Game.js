@@ -20,18 +20,18 @@ const Game = ({ game }) => {
   // Load Details handler
   const dispatch = useDispatch();
 
-  const loadDetailsHandler = () => {
+  const loadDetailHandler = () => {
     dispatch(loadDetail(id, short_screenshots));
   };
   return (
     // Will change the URL and because we have a condition on routing. It will show GameDetail Component
-    <Link to={`/game/${id}`}>
-      <StyledGame onClick={loadDetailsHandler}>
+    <StyledGame key={id} layoutId={id.toString()} onClick={loadDetailHandler}>
+      <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={smallImage(image, 640)} alt={image} />
-      </StyledGame>
-    </Link>
+        <img src={smallImage(image, 640)} alt={name} />
+      </Link>
+    </StyledGame>
   );
 };
 const StyledGame = styled(motion.div)`

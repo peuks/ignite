@@ -18,13 +18,7 @@ const GamesList = ({ popular, newGames, upcoming }) => {
           <h2>{section.title}</h2>
           <GamesSectionStyled>
             {section.games.map((game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                image={game.background_image}
-                id={game.id}
-                key={game.id}
-              />
+              <Game game={game} />
             ))}
           </GamesSectionStyled>
         </React.Fragment>

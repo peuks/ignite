@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { smallImage } from "utils";
 
-const GameDetail = () => {
+const GameDetail = ({ pathId }) => {
   //Data
   const { game, isLoading } = useSelector((state) => state.detail);
   const {
@@ -33,9 +33,10 @@ const GameDetail = () => {
   return (
     <>
       {/* wait until content is ready to render */}
+
       {!isLoading && (
         <CardShadow onClick={exitDetailHander} className="card card--shadow">
-          <Detail className="card__detail">
+          <Detail layoutId={pathId} className="card__detail">
             <Stats className="card__stats">
               <div className="card__rating">
                 <h3>{name}</h3>

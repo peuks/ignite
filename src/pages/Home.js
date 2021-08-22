@@ -1,60 +1,52 @@
 import React, { useEffect } from "react";
 //Redux
+//Components
+//Styling and Animation
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+
+//Redux
 import { useDispatch, useSelector } from "react-redux";
 //Components
 import { Game } from "components";
 
 //Styling and Animation
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { loadGames } from "actions/gamesActions";
 import GameDetail from "components/GameDetail";
-import { useHistory, useLocation } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import { loadGames } from "actions/gamesActions";
 const Home = () => {
-  //FETCH GAMES
-  const dispatch = useDispatch();
+  //get the current location
   const location = useLocation();
   const id = location.pathname.split("/")[2];
 
+  //FETCH GAMES
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
-
   //Get that data back
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
-  /**
-   * return the last element of the array with every content after a /
-   * @eg /game/58386
-   * @return 58386
-   */
-
+  const allGames = [
+    { title: "Upcoming Games", games: popular },
+    { title: "Popular Games", games: newGames },
+    { title: "New Games", games: upcoming },
+  ];
   return (
-    // TODO:GameList should be another component
     <GameList>
-      {id && <GameDetail />}
-      <h2>Upcoming Games</h2>
-      {/* TODO: Games should be in GameListcomp */}
-      <Games>
-        {upcoming.map((game) => (
-          <Game game={game} key={game.id} />
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>{id && <GameDetail pathId={id} />}</AnimatePresence>
+        {allGames.map((section) => (
+          <>
+            <h2>{section.title}</h2>
+            <Games>
+              {section.games.map((game) => (
+                <Game game={game} />
+              ))}
+            </Games>
+          </>
         ))}
-      </Games>
-      <h2>Popular Games</h2>
-      {/* TODO: Games should be in GameListcomp */}
-      <Games>
-        {popular.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </Games>
-      <h2>New Games</h2>
-      {/* TODO: Games should be in GameListcomp */}
-      <Games>
-        {newGames.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </Games>
+      </AnimateSharedLayout>
     </GameList>
   );
 };
