@@ -39,7 +39,9 @@ const GameDetail = ({ pathId }) => {
           <Detail layoutId={pathId} className="card__detail">
             <Stats className="card__stats">
               <div className="card__rating">
-                <h3>{name}</h3>
+                <motion.h3 layoutId={`title ${pathId.toString()}`}>
+                  {name}
+                </motion.h3>
                 <p>Rating: {rating}</p>
               </div>
               <Info className="info">
@@ -52,7 +54,8 @@ const GameDetail = ({ pathId }) => {
               </Info>
             </Stats>
             <Media className="media">
-              <img
+              <motion.img
+                layoutId={`image ${pathId.toString()}`}
                 src={smallImage(backgroundImage, 1280)}
                 alt={backgroundImage}
               />
@@ -85,7 +88,7 @@ const CardShadow = styled(motion.div)`
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 20;
   /* Custom scroll barr */
   &::-webkit-scrollbar {
     width: 0.5rem;
@@ -99,9 +102,10 @@ const CardShadow = styled(motion.div)`
 `;
 
 const Detail = styled(motion.div)`
+  top: 5vh;
   width: 80%;
-  border-radius: 1rem;
-  padding: 2rem 5rem;
+  border-radius: 0.4rem;
+  padding: 2rem min(3.5vw, 5rem);
   background: white;
   position: absolute;
   left: 10%;
