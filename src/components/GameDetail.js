@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { smallImage } from "utils";
-
+import { getPlatform, getStars, smallImage } from "utils";
 const GameDetail = ({ pathId }) => {
   //Data
   const { game, isLoading } = useSelector((state) => state.detail);
@@ -39,16 +38,19 @@ const GameDetail = ({ pathId }) => {
           <Detail layoutId={pathId} className="card__detail">
             <Stats className="card__stats">
               <div className="card__rating">
-                <motion.h3 layoutId={`title ${pathId.toString()}`}>
-                  {name}
-                </motion.h3>
+                <motion.h3 layoutId={`title ${pathId}`}>{name}</motion.h3>
                 <p>Rating: {rating}</p>
+                {getStars(rating)}
               </div>
-              <Info className="info">
+              <Info>
                 <h3>Platforms</h3>
-                <Platforms className="platforms">
-                  {platforms?.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                <Platforms>
+                  {platforms.map((data) => (
+                    <img
+                      alt={data.platform.name}
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                    ></img>
                   ))}
                 </Platforms>
               </Info>
@@ -88,7 +90,7 @@ const CardShadow = styled(motion.div)`
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 10;
   /* Custom scroll barr */
   &::-webkit-scrollbar {
     width: 0.5rem;
@@ -130,7 +132,7 @@ const Stats = styled(motion.div)`
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
-  h3 {
+  img {
     margin-left: 3rem;
   }
 `;
