@@ -50,25 +50,17 @@ const GameDetail = ({ pathId }) => {
                       alt={data.platform.name}
                       key={data.platform.id}
                       src={getPlatform(data.platform.name)}
-                    ></img>
+                    />
                   ))}
                 </Platforms>
               </Info>
             </Stats>
             <Media className="media">
-              {backgroundImage ? (
-                <motion.img
-                  layoutId={`image ${pathId.toString()}`}
-                  src={smallImage(backgroundImage, 1280)}
-                  alt={backgroundImage}
-                />
-              ) : (
-                <motion.img
-                  layoutId={`image ${pathId.toString()}`}
-                  src="https://source.unsplash.com/featured/?{game},{video}"
-                  alt="https://source.unsplash.com/featured/?{game},{video}"
-                />
-              )}
+              <motion.img
+                layoutId={`image ${pathId.toString()}`}
+                src={smallImage(backgroundImage, 1280)}
+                alt={backgroundImage}
+              />
             </Media>
             <Description className="description">
               <p>{description_raw}</p>
@@ -127,21 +119,26 @@ const Detail = styled(motion.div)`
 `;
 
 const Stats = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   img {
-    width: 2rem;
+    width: clamp(1.5rem, 0.5vw, 2rem);
     height: 2rem;
+    object-fit: contain;
     display: inline;
+  }
+  @media only screen and (min-width: 700px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 `;
 
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
-  img {
-    margin-left: 3rem;
+
+  @media only screen and (min-width: 700px) {
+    gap: 1em;
   }
 `;
 const Info = styled(motion.div)`
