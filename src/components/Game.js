@@ -29,6 +29,7 @@ const Game = ({ game }) => {
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${id.toString()}`}>{name}</motion.h3>
         <p>{released}</p>
+
         <motion.img
           layoutId={`image ${id.toString()}`}
           src={smallImage(image, 640)}
