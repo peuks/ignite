@@ -14,6 +14,7 @@ import styled from "styled-components";
 import GameDetail from "components/GameDetail";
 import { useLocation } from "react-router-dom";
 import { loadGames } from "actions/gamesActions";
+import { useState } from "react";
 const Home = () => {
   //get the current location
   const location = useLocation();
@@ -24,28 +25,54 @@ const Home = () => {
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
+
   //Get that data back
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  );
 
   const allGames = [
     { title: "Upcoming Games", games: popular },
     { title: "Popular Games", games: newGames },
     { title: "New Games", games: upcoming },
   ];
+  const SearchedGames = [{ title: "Searched Games", games: searched }];
+
+  let delay1 = 0.3;
+  let delay2 = 0.3;
+
   return (
     <GameList>
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>{id && <GameDetail pathId={id} />}</AnimatePresence>
-        {allGames.map((section) => (
-          <>
-            <h2>{section.title}</h2>
-            <Games>
-              {section.games.map((game) => (
-                <Game game={game} />
-              ))}
-            </Games>
-          </>
-        ))}
+
+        {searched.length > 0 &&
+          SearchedGames.map((section) => (
+            <div className="searched">
+              <h2>{section.title}</h2>
+              <Games>
+                {section.games.map((game) => {
+                  delay1 = delay1 + 0.0;
+
+                  return <Game game={game} delay={delay1} />;
+                })}
+              </Games>
+            </div>
+          ))}
+        {allGames.map((section) => {
+          return (
+            <>
+              <h2>{section.title}</h2>
+              <Games>
+                {section.games.map((game) => {
+                  delay2 = delay2 + 0.05;
+
+                  return <Game game={game} delay={delay2} />;
+                })}
+              </Games>
+            </>
+          );
+        })}
       </AnimateSharedLayout>
     </GameList>
   );

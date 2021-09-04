@@ -3,13 +3,14 @@
  */
 
 import { loadDetail } from "actions/detailAction";
+import { fadeIn } from "animations";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { smallImage } from "utils";
 
-const Game = ({ game }) => {
+const Game = ({ game, delay }) => {
   const {
     released,
     name,
@@ -17,6 +18,7 @@ const Game = ({ game }) => {
     id,
     short_screenshots,
   } = game;
+  console.log(delay);
   // Load Details handler
   const dispatch = useDispatch();
 
@@ -25,10 +27,33 @@ const Game = ({ game }) => {
   };
   return (
     // Will change the URL and because we have a condition on routing. It will show GameDetail Component
-    <StyledGame key={id} layoutId={id.toString()} onClick={loadDetailHandler}>
+    <StyledGame
+      key={id}
+      variants={{
+        hidden: {
+          opacity: 0,
+        },
+        show: {
+          opacity: 1,
+          transition: {
+            duration: 0.75,
+            delay: delay,
+          },
+          exit: {
+            opacity: 0,
+            transition: { duration: 0.75 },
+          },
+        },
+      }}
+      initial="hidden"
+      animate="show"
+      layoutId={id.toString()}
+      onClick={loadDetailHandler}
+    >
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${id.toString()}`}>{name}</motion.h3>
         <p>{released}</p>
+
         <motion.img
           layoutId={`image ${id.toString()}`}
           src={smallImage(image, 640)}
