@@ -3,7 +3,6 @@
  */
 
 import { loadDetail } from "actions/detailAction";
-import { fadeIn } from "animations";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
