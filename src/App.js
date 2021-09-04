@@ -1,4 +1,5 @@
 import { GlobalStyles } from "components";
+import Nav from "components/Nav";
 import Home from "pages/Home";
 import { Route } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const App = () => {
 
       */}
       <Route path={["/game/:id", "/"]}>
+        <Nav />
         <Home />
       </Route>
     </div>

@@ -24,18 +24,36 @@ const Home = () => {
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
-  //Get that data back
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
+  //Get that data back
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  );
+
+  console.log(searched);
   const allGames = [
     { title: "Upcoming Games", games: popular },
     { title: "Popular Games", games: newGames },
     { title: "New Games", games: upcoming },
   ];
+  const SearchedGames = [{ title: "Searched Games", games: searched }];
+
   return (
     <GameList>
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>{id && <GameDetail pathId={id} />}</AnimatePresence>
+
+        {searched.length > 0 &&
+          SearchedGames.map((section) => (
+            <div className="searched">
+              <h2>{section.title}</h2>
+              <Games>
+                {section.games.map((game) => (
+                  <Game game={game} />
+                ))}
+              </Games>
+            </div>
+          ))}
         {allGames.map((section) => (
           <>
             <h2>{section.title}</h2>

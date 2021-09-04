@@ -18,6 +18,8 @@ import {
  */
 
 export const smallImage = (imagePath, size) => {
+  if (!imagePath) return "https://source.unsplash.com/featured/?{game},{video}";
+
   const image = imagePath.match(/media\/screenshots/)
     ? imagePath.replace(
         "media/screenshots",

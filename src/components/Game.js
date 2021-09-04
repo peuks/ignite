@@ -29,6 +29,7 @@ const Game = ({ game }) => {
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${id.toString()}`}>{name}</motion.h3>
         <p>{released}</p>
+
         <motion.img
           layoutId={`image ${id.toString()}`}
           src={smallImage(image, 640)}
@@ -51,20 +52,3 @@ const StyledGame = styled(motion.div)`
   }
 `;
 export default Game;
-
-<div className="burger">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>;
-
-const Burger = styled.div`
-  width: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  span {
-    width: 100%;
-    border-radius: 10px;
-  }
-`;

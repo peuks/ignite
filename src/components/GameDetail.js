@@ -56,11 +56,19 @@ const GameDetail = ({ pathId }) => {
               </Info>
             </Stats>
             <Media className="media">
-              <motion.img
-                layoutId={`image ${pathId.toString()}`}
-                src={smallImage(backgroundImage, 1280)}
-                alt={backgroundImage}
-              />
+              {backgroundImage ? (
+                <motion.img
+                  layoutId={`image ${pathId.toString()}`}
+                  src={smallImage(backgroundImage, 1280)}
+                  alt={backgroundImage}
+                />
+              ) : (
+                <motion.img
+                  layoutId={`image ${pathId.toString()}`}
+                  src="https://source.unsplash.com/featured/?{game},{video}"
+                  alt="https://source.unsplash.com/featured/?{game},{video}"
+                />
+              )}
             </Media>
             <Description className="description">
               <p>{description_raw}</p>
