@@ -18,7 +18,6 @@ const Game = ({ game, delay }) => {
     id,
     short_screenshots,
   } = game;
-  console.log(delay);
   // Load Details handler
   const dispatch = useDispatch();
 
