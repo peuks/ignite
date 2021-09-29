@@ -14,7 +14,6 @@ import styled from "styled-components";
 import GameDetail from "components/GameDetail";
 import { useLocation } from "react-router-dom";
 import { loadGames } from "actions/gamesActions";
-import { useState } from "react";
 const Home = () => {
   //get the current location
   const location = useLocation();
@@ -52,7 +51,7 @@ const Home = () => {
               <h2>{section.title}</h2>
               <Games>
                 {section.games.map((game) => {
-                  delay1 = delay1 + 0.0;
+                  delay1 += 0.0;
 
                   return <Game game={game} delay={delay1} />;
                 })}
@@ -65,7 +64,7 @@ const Home = () => {
               <h2>{section.title}</h2>
               <Games>
                 {section.games.map((game) => {
-                  delay2 = delay2 + 0.05;
+                  delay2 += 0.05;
 
                   return <Game game={game} delay={delay2} />;
                 })}
