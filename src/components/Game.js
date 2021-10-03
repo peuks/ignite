@@ -69,7 +69,7 @@ const StyledGame = styled(motion.div)`
   overflow: hidden;
   img {
     width: 100%;
-    height: 40vh;
+    height: min(60vh, 32em);
     object-fit: cover;
   }
 `;
