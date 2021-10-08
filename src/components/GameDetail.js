@@ -156,6 +156,7 @@ const Media = styled(motion.div)`
 `;
 
 const Description = styled(motion.div)`
+  word-wrap: break-word;
   margin: 5rem 0rem;
 `;
 

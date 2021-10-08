@@ -12,7 +12,6 @@ const GamesList = ({ popular, newGames, upcoming }) => {
   ];
   return (
     <GameListStyled>
-      {/* <GameDetail/> */}
       {allGames.map((section) => (
         <React.Fragment key={uuidv4()}>
           <h2>{section.title}</h2>
