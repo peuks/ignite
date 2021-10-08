@@ -43,16 +43,15 @@ const Nav = () => {
 const StyledNav = styled(motion.nav)`
   padding: min(3.5vh, 3rem) min(3.5vw, 5rem);
   text-align: center;
+  font-size: 1.5rem;
   input {
     width: 50%;
-    font-size: 1.5rem;
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
   }
   button {
-    font-size: 1.5rem;
     border: none;
     padding: 0.5rem 2rem;
     cursor: pointer;
