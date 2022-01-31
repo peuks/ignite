@@ -33,7 +33,7 @@ const GameDetail = ({ pathId }) => {
     <>
       {/* wait until content is ready to render */}
 
-      {!isLoading && (
+      {pathId && !isLoading && (
         <CardShadow onClick={exitDetailHander} className="card card--shadow">
           <Detail layoutId={pathId} className="card__detail">
             <Stats className="card__stats">

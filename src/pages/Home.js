@@ -43,7 +43,7 @@ const Home = () => {
   return (
     <GameList>
       <AnimateSharedLayout type="crossfade">
-        <AnimatePresence>{id && <GameDetail pathId={id} />}</AnimatePresence>
+        <AnimatePresence>{<GameDetail pathId={id} />}</AnimatePresence>
 
         {searched.length > 0 &&
           SearchedGames.map((section) => (
@@ -58,20 +58,18 @@ const Home = () => {
               </Games>
             </div>
           ))}
-        {allGames.map((section) => {
-          return (
-            <>
-              <h2>{section.title}</h2>
-              <Games>
-                {section.games.map((game) => {
-                  delay2 += 0.05;
+        {allGames.map((section) => (
+          <>
+            <h2>{section.title}</h2>
+            <Games>
+              {section.games.map((game) => {
+                delay2 += 0.05;
 
-                  return <Game game={game} delay={delay2} />;
-                })}
-              </Games>
-            </>
-          );
-        })}
+                return <Game game={game} delay={delay2} />;
+              })}
+            </Games>
+          </>
+        ))}
       </AnimateSharedLayout>
     </GameList>
   );

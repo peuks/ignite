@@ -4,21 +4,19 @@ import Home from "pages/Home";
 import { Route } from "react-router-dom";
 
 // import logo from "./logo.svg";
-const App = () => {
-  return (
-    <div className="App">
-      <GlobalStyles />
-      {/* 
+const App = () => (
+  <div className="App">
+    <GlobalStyles />
+    {/* 
       When our Route says "/" we render Home component.
       When our Route says "/game/:id" we also render Home component.
 
       */}
-      <Route path={["/game/:id", "/"]}>
-        <Nav />
-        <Home />
-      </Route>
-    </div>
-  );
-};
+    <Route path={["/game/:id", "/"]}>
+      <Nav />
+      <Home />
+    </Route>
+  </div>
+);
 
 export default App;
